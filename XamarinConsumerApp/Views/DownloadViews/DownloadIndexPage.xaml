@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<baseViews:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.DownloadViews.DownloadIndexPage"
+             xmlns:baseViews="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             Title="Download">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Insert code to download coupon" Margin="0, 40, 0, 0" HorizontalOptions="CenterAndExpand" />
+
+            <Button Text="Input Code" Margin="0, 20, 0, 0" Padding="20"  BackgroundColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryBackgroundColor}" TextColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryTextColor}" Clicked="OnClicked_InputCode" HorizontalOptions="Center"></Button>
+
+            <Label Text="OR" Margin="0, 30, 0, 30" FontAttributes="Bold" HorizontalOptions="Center"></Label>
+
+            <Label Text="Scan QR code to download coupon" Margin="0, 0, 0, 20" HorizontalOptions="CenterAndExpand"></Label>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Row="0" Grid.Column="0" Source="icon_qr_code.png" HeightRequest="80" WidthRequest="80">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped_Program" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Grid.Row="0" Grid.Column="1" Source="icon_qr_code.png" HeightRequest="80" WidthRequest="80">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped_Campaign" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Program" HorizontalOptions="Center"></Label>
+                <Label Grid.Row="1" Grid.Column="1" Text="Campaign" HorizontalOptions="Center"></Label>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</baseViews:BaseContentPage>

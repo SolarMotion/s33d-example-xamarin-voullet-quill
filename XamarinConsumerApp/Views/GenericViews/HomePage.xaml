@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.GenericViews.HomePage"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             xmlns:base="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             Title="Home">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HeightRequest="300">
+                <CarouselView x:Name="carouselBulletin" ItemsSource="{Binding BulletinListing}" IndicatorView="indicatorView">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Image Source="{Binding ImageSource}" Aspect="AspectFill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnTapped_Bulletin" CommandParameter="{Binding .}">                                            
+                                        </TapGestureRecognizer>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                    <CarouselView.EmptyView>
+                        <StackLayout>
+                            <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+                            <Label HorizontalOptions="Center" Text="No bulletins to display"></Label>
+                        </StackLayout>
+                    </CarouselView.EmptyView>
+                </CarouselView>
+                <IndicatorView x:Name="indicatorView" IndicatorsShape="Square" IndicatorColor="LightGray" SelectedIndicatorColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}" HorizontalOptions="Center">
+                </IndicatorView>
+            </StackLayout>
+            
+            <StackLayout Margin="{x:Static themeDesign:ThemeDesign.StackedLayoutPadding}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label TextColor="Black" FontSize="18"  Text="My Vouchers" Grid.Row="0" Grid.Column="0">
+                    </Label>
+                    <Label HorizontalOptions="EndAndExpand" x:Name="lblType" TextColor="Black" FontAttributes="Bold" FontSize="18" Text="All" Grid.Row="0" Grid.Column="1">
+                    </Label>
+                    <Switch HorizontalOptions="End"  x:Name="switchType" IsToggled="False"  Grid.Row="0" Grid.Column="2" Toggled="OnToggle_SwitchType">
+                    </Switch>
+                </Grid>
+
+                <SearchBar x:Name="searchBarVoucherListing" TextChanged="TextChanged_SearchBar" Margin="0,0,0,20" Placeholder="Seach for voucher..." FontAttributes="Italic" HorizontalTextAlignment="Center" SearchButtonPressed="OnClick_SearchBar" />
+
+                <RefreshView x:Name="refreshVoucherCollectionView" IsRefreshing="False" Refreshing="OnRefreshing_VoucherCollectionView" RefreshColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}">
+                    <CollectionView x:Name="collectionViewVoucherListing" ItemsSource="{Binding VoucherListing}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="0, 10, 0, 10">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnTapped_Voucher" CommandParameter="{Binding .}"/>
+                                    </Grid.GestureRecognizers>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="20" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.RowSpan="3" Grid.Row="0" Grid.Column="0" Source="{Binding LogoSource}" Aspect="AspectFill" HeightRequest="80" WidthRequest="80" />
+                                    <Label Grid.RowSpan="3" Grid.Row="0" Grid.Column="1"></Label>
+                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding Name}" FontAttributes="Bold" />
+                                    <Label Grid.Row="1" Grid.Column="2" Text="{Binding Description}" FontAttributes="Italic" VerticalOptions="End" />
+                                    <Label Grid.Row="2" Grid.Column="2" Text="{Binding ValidUntilStr}" FontAttributes="Italic" VerticalOptions="End" />
+                                    <ImageButton Clicked="OnClicked_Share" CommandParameter="{Binding .}" WidthRequest="24" HeightRequest="24" Grid.Row="2" Grid.Column="3" Source="icon_share_24.png" HorizontalOptions="End" BackgroundColor="Transparent"></ImageButton>
+                                    <ImageButton Clicked="OnClicked_Delete" CommandParameter="{Binding .}" WidthRequest="24" HeightRequest="24"  Grid.Row="2" Grid.Column="4" Source="icon_delete_48.png" HorizontalOptions="End" BackgroundColor="Transparent"></ImageButton>
+                                    <BoxView HorizontalOptions="Fill" Grid.ColumnSpan="5" Grid.Row="3" Grid.Column="0" HeightRequest="2" BackgroundColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}"></BoxView>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <StackLayout>
+                                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+                                <Label HorizontalOptions="Center" Text="No vouchers to display"></Label>
+                            </StackLayout>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </RefreshView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</base:BaseContentPage>

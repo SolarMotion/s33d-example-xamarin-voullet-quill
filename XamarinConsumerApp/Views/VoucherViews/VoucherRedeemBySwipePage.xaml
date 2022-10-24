@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<baseViews:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.VoucherViews.VoucherRedeemBySwipePage"
+             xmlns:baseViews="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             Title="Redeem">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{x:Static themeDesign:ThemeDesign.BackgroundColor}">
+            <Label Margin="0,20,0,0" Text="{Binding Voucher.OrgName}" HorizontalOptions="Center" FontSize="30" ></Label>
+
+            <Label Margin="0,20,0,0" Text="{Binding Voucher.VoucherName}" HorizontalOptions="Center" FontSize="{x:Static themeDesign:ThemeDesign.DescriptionFontSize}"></Label>
+
+            <Button Text="SWIPE" Margin="0,50,0,50" HorizontalOptions="Center" BackgroundColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryBackgroundColor}" TextColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryTextColor}" Clicked="OnSwipe_Redeem"></Button>
+
+            <Label Text="Once swiped, this voucher is considered redeemed." FontAttributes="Bold" HorizontalTextAlignment="Center"></Label>
+
+            <Label Margin="0,10,0,0" Text="Actual swipe feature will be displayed once new plugin found." TextColor="Red" HorizontalTextAlignment="Center"></Label>
+        </StackLayout>
+    </ContentPage.Content>
+</baseViews:BaseContentPage>

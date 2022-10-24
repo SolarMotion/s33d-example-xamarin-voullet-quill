@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<baseViews:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.BulletinViews.BulletinDetailsPage"
+             xmlns:baseViews="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             Title="Bulletin Details">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HeightRequest="200">
+                <Image Source="{Binding Bulletin.ImageSource}" Aspect="Fill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                </Image>
+            </StackLayout>
+            <StackLayout Margin="{x:Static themeDesign:ThemeDesign.StackedLayoutPadding}">
+                <Label FontAttributes="Bold" FontSize="{x:Static themeDesign:ThemeDesign.TitleFontSize}" HorizontalOptions="Center" Text="{Binding Bulletin.Name}"></Label>
+                <Label FontSize="{x:Static themeDesign:ThemeDesign.DescriptionFontSize}" TextColor="{x:Static themeDesign:ThemeDesign.DescriptionFontColour}" Text="{Binding Bulletin.Description}"></Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</baseViews:BaseContentPage>

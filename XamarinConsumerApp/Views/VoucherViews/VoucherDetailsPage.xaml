@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<baseViews:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.VoucherViews.VoucherDetailsPage"
+             xmlns:baseViews="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             Title="Voucher Details">
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="{x:Static themeDesign:ThemeDesign.BackgroundColor}">
+            <StackLayout>
+                <StackLayout HeightRequest="200">
+                    <Image Source="{Binding Voucher.Image}" Aspect="Fill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    </Image>
+                </StackLayout>
+                <Grid  Margin="20,10,20,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="{x:Static themeDesign:ThemeDesign.TitleFontSize}" Text="{Binding Voucher.Name}"></Label>
+                    <Label Grid.Row="1" Grid.Column="0" FontSize="{x:Static themeDesign:ThemeDesign.DescriptionFontSize}" TextColor="{x:Static themeDesign:ThemeDesign.DescriptionFontColour}" Text="{Binding Voucher.Description}"></Label>
+                    <Button Grid.RowSpan="2" Grid.Row="0" Grid.Column="1" Text="REDEEM" BackgroundColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryBackgroundColor}" TextColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryTextColor}" Clicked="OnClicked_Redeem" CommandParameter="{Binding Voucher}"></Button>
+                    <ImageButton Grid.RowSpan="2"  Grid.Row="0" Grid.Column="2" Clicked="OnClicked_Share" CommandParameter="{Binding Voucher}" Source="icon_share_24.png" BackgroundColor="Transparent"></ImageButton>
+                </Grid>
+                <StackLayout BackgroundColor="White" Margin="20,10,20,10" Padding="10,10,10,10">
+                    <Label Text="{Binding Voucher.Name}"></Label>
+                    <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+                    <Label Text="{Binding Voucher.ValidUntilDate}"></Label>
+                    <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+
+                    <Label Text="Terms and Conditions" FontAttributes="Bold"></Label>
+                    <CollectionView x:Name="collectionViewTnCList" ItemsSource="{Binding Voucher.TnCList}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding .}" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+
+                    <Label  HeightRequest="2"  BackgroundColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}"></Label>
+                    <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+                    <Label FontAttributes="Bold" Text="Redemption Points:"></Label>
+                    <CollectionView x:Name="collectionViewRedemptionPoints" ItemsSource="{Binding Voucher.RedemptionPoints}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding information}" />                                  
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Label HorizontalOptions="Center" Text="View More" FontSize="{x:Static themeDesign:ThemeDesign.DescriptionFontSize}" TextColor="{x:Static themeDesign:ThemeDesign.DescriptionFontColour}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapped_RedemptionPoints" CommandParameter="{Binding Voucher}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</baseViews:BaseContentPage>

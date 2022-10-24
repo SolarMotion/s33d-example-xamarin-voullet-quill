@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<baseViews:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.AccountViews.AccountIndexPage"       
+             xmlns:baseViews="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             Title="Account Details">
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="{x:Static themeDesign:ThemeDesign.BackgroundColor}">
+            <StackLayout>
+                <Grid Padding="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Frame CornerRadius="100" HeightRequest="200" WidthRequest="200" HorizontalOptions="Center" Padding="0" IsClippedToBounds="True" Grid.Row="0" Grid.Column="0" Margin="0, 20, 0, 0" >
+                        <Image Source="{Binding Account.ImageSource}" Aspect="Fill">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapped_ProfilePicture" CommandParameter="{Binding Account}">
+                                </TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Frame>
+                    <Label Grid.Row="0" Grid.Column="1" FontSize="22" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" TextColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}" Text="{Binding Account.Name}"></Label>
+
+                    <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Text="Edit Picture">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapped_ProfilePicture" CommandParameter="{Binding Account}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+
+                <Frame BorderColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}" Margin="5, 20, 5, 20" Padding="20" CornerRadius="15">
+                    <Grid RowSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" FontAttributes="Bold" Text="Email"></Label>
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Account.Email}"></Label>
+
+                        <Label Grid.Row="1" Grid.Column="0" FontAttributes="Bold" Text="ID No."></Label>
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Account.NRIC}"></Label>
+
+                        <Label Grid.Row="2" Grid.Column="0" FontAttributes="Bold" Text="Date of Birth"></Label>
+                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding Account.DOB}"></Label>
+
+                        <Label Grid.Row="3" Grid.Column="0" FontAttributes="Bold" Text="Gender"></Label>
+                        <Label Grid.Row="3" Grid.Column="1" Text="{Binding Account.Gender}"></Label>
+
+                        <Label Grid.Row="4" Grid.Column="0" FontAttributes="Bold" Text="Mobile No."></Label>
+                        <Label Grid.Row="4" Grid.Column="1" Text="{Binding Account.Mobile}"></Label>
+
+                        <Label Grid.Row="5" Grid.Column="0" FontAttributes="Bold" Text="Address"></Label>
+                        <Label Grid.Row="5" Grid.Column="1" Text="{Binding Account.FullAddress}"></Label>
+
+                        <Label Grid.Row="6" Grid.Column="0" FontAttributes="Bold" Text="Postcode"></Label>
+                        <Label Grid.Row="6" Grid.Column="1" Text="{Binding Account.Postcode}"></Label>
+
+                        <Label Grid.Row="7" Grid.Column="0" FontAttributes="Bold" Text="City"></Label>
+                        <Label Grid.Row="7" Grid.Column="1" Text="{Binding Account.TownCity}"></Label>
+
+                        <Label Grid.Row="8" Grid.Column="0" FontAttributes="Bold" Text="State"></Label>
+                        <Label Grid.Row="8" Grid.Column="1" Text="{Binding Account.StateName}"></Label>
+
+                        <!--<Label Grid.Row="9" Grid.Column="0" FontAttributes="Bold" Text="Country"></Label>
+                        <Label Grid.Row="9" Grid.Column="1" Text="{Binding Account.Contry}"></Label>-->
+                    </Grid>
+                </Frame>
+
+                <Grid Padding="5" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Row="0" Grid.Column="0" BackgroundColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryBackgroundColor}" TextColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryTextColor}" Text="Update Profile" Clicked="OnClicked_UpdateProfile"></Button>
+                    <Button Grid.Row="0" Grid.Column="1" BackgroundColor="{x:Static themeDesign:ThemeDesign.ButtonSecondaryBackgroundColor}" TextColor="{x:Static themeDesign:ThemeDesign.ButtonSecondaryTextColor}" Text="Change Password" Clicked="OnClicked_ChangePassword"></Button>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</baseViews:BaseContentPage>

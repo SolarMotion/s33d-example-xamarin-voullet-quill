@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.GenericViews.SupportedMerchantPage"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             xmlns:base="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             Title="Supported Merchants">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Close" Order="Primary" Priority="0" Clicked="OnClicked_Close"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout  Margin="{x:Static themeDesign:ThemeDesign.StackedLayoutPadding}">
+            <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+            <Label Text="WE SUPPORTED THE FOLLOWING ORGANISATIONS" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontSize="{x:Static themeDesign:ThemeDesign.DescriptionFontSize}" />
+            <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+
+            <RefreshView x:Name="refreshViewMerchant"  Refreshing="OnRefreshing_MerchantCollectionView" RefreshColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}">
+                <ScrollView>
+                    <CollectionView x:Name="collectionViewMerchant" ItemsSource="{Binding Merchants}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding ImageSource}" Margin="50" ></Image>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <StackLayout>
+                                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+                                <Label HorizontalOptions="Center" Text="No merchants to display"></Label>
+                            </StackLayout>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </ScrollView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</base:BaseContentPage>

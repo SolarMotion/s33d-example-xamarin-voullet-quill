@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<baseViews:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.VoucherViews.VoucherRedeemByMerchantNamePage"
+             xmlns:baseViews="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             Title="Redeem">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{x:Static themeDesign:ThemeDesign.BackgroundColor}">
+            <Label Margin="0,20,0,0" Text="{Binding Voucher.OrgName}" HorizontalOptions="Center" FontSize="30" ></Label>
+
+            <Label Margin="0,20,0,20" Text="{Binding Voucher.VoucherName}" HorizontalOptions="Center" FontSize="{x:Static themeDesign:ThemeDesign.DescriptionFontSize}"></Label>
+
+            <Entry x:Name="txtMerchantCode" Placeholder="Merchant Code" HorizontalTextAlignment="Center" HorizontalOptions="Center" WidthRequest="200"></Entry>
+
+            <Button Text="ENTER" Margin="0,40,0,40" HorizontalOptions="Center" BackgroundColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryBackgroundColor}" TextColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryTextColor}" Clicked="OnClicked_Redeem"></Button>
+
+            <Label Text="Please insert merchant code to complete your redemption and earn your beans." HorizontalTextAlignment="Center"></Label>
+        </StackLayout>
+    </ContentPage.Content>
+</baseViews:BaseContentPage>

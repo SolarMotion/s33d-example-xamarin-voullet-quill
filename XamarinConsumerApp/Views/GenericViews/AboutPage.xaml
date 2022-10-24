@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<baseViews:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.GenericViews.AboutPage"
+             xmlns:baseViews="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             Title="About">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Close" Order="Primary" Priority="0" Clicked="OnClicked_Close"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Margin="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}">
+            <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+            <Label Text="Version 1.0.0" HorizontalOptions="CenterAndExpand"  FontSize="{x:Static themeDesign:ThemeDesign.DescriptionFontSize}" />
+        </StackLayout>
+    </ContentPage.Content>
+</baseViews:BaseContentPage>

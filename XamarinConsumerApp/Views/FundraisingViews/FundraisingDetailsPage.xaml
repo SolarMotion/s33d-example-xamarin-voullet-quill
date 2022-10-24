@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:m="clr-namespace:XamarinConsumerApp.Models;assembly=XamarinConsumerApp"
+             x:Class="XamarinConsumerApp.Views.FundraisingViews.FundraisingDetailsPage"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             xmlns:base="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             Title="Fundraising Details">
+    <d:ContentPage.BindingContext>
+        <m:FundraisingDetail />
+    </d:ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{x:Static themeDesign:ThemeDesign.BackgroundColor}">
+            <StackLayout>
+                <Image Source="{Binding ImageSource}" Aspect="Fill" HeightRequest="150" />
+            </StackLayout>
+            <Grid Margin="{x:Static themeDesign:ThemeDesign.StackedLayoutPadding}">
+                <d:Grid.BindingContext>
+                    <m:FundraisingDetail />
+                </d:Grid.BindingContext>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="{x:Static themeDesign:ThemeDesign.TitleFontSize}" Text="{Binding Name}" />
+                <Label Grid.Row="1" Grid.Column="0" FontSize="{x:Static themeDesign:ThemeDesign.DescriptionFontSize}" TextColor="{x:Static themeDesign:ThemeDesign.DescriptionFontColour}" Text="{Binding Address}" />
+                <Label Grid.Row="2" Grid.Column="0" FontSize="{x:Static themeDesign:ThemeDesign.DescriptionFontSize}" TextColor="{x:Static themeDesign:ThemeDesign.DescriptionFontColour}" Text="{Binding ContectNumber}" />
+                <ImageButton Grid.RowSpan="3"  Grid.Row="0" Grid.Column="1" Clicked="OnClicked_Share" CommandParameter="{Binding .}" Source="icon_share_24.png" BackgroundColor="Transparent"  />
+            </Grid>
+            <StackLayout BackgroundColor="White" Margin="20,10,20,10" Padding="10,10,10,10">
+                <Label Text="{Binding Purpose, StringFormat='Fundraising Purpose: {0:F2}'}"></Label>
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+                <Label Text="{Binding Amount, StringFormat='Amount to be Raised: {0:F2}'}"></Label>
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+                <Label Text="{Binding End, StringFormat='End Date: {0:F2}'}"></Label>
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+
+                <CollectionView x:Name="collectionViewVouchers" ItemsSource="{Binding Items}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="5" BorderColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}" HasShadow="False" CornerRadius="15">
+                                <Grid>
+                                    <d:Grid.BindingContext>
+                                        <m:FundraisingDetailItem />
+                                    </d:Grid.BindingContext>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnTapped_Voucher" CommandParameter="{Binding .}"/>
+                                    </Grid.GestureRecognizers>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="20" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.RowSpan="3" Grid.Row="0" Grid.Column="0" Source="{Binding ImageSource}" Aspect="AspectFill" HeightRequest="100" WidthRequest="80"  />
+                                    <Label Grid.RowSpan="3" Grid.Row="0" Grid.Column="1"/>
+                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding Name}" FontAttributes="Bold" />
+                                    <Label Grid.Row="1" Grid.Column="2" Text="{Binding Description}" FontAttributes="Italic" VerticalOptions="End" />
+                                    <Label Grid.Row="2" Grid.Column="2" Text="{Binding ValidTill, StringFormat='Valid Until {0:F2}'}" FontAttributes="Italic" VerticalOptions="End" />
+                                </Grid>
+                            </Frame>
+                            
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</base:BaseContentPage>

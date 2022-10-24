@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<baseViews:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.HighlightViews.HighlightPopularListingPage"
+             xmlns:baseViews="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources">
+    <ContentPage.Content>
+        <RefreshView Margin="{x:Static themeDesign:ThemeDesign.StackedLayoutPadding}" x:Name="refreshViewPopular" IsRefreshing="False" Refreshing="OnRefreshing_Highlight" RefreshColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}">
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="ALL MOST POPULAR" VerticalOptions="Start" HorizontalOptions="Center" FontAttributes="Bold" FontSize="{x:Static themeDesign:ThemeDesign.TitleFontSize}">
+                    </Label>
+                    <CollectionView x:Name="collectionViewPopularListing" ItemsSource="{Binding PopularListing}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="0, 10, 0, 10">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnTapped_Voucher" CommandParameter="{Binding .}"/>
+                                    </Grid.GestureRecognizers>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="20" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.RowSpan="3" Grid.Row="0" Grid.Column="0" Source="{Binding ImageSource}" Aspect="AspectFill" HeightRequest="80" WidthRequest="80" />
+                                    <Label Grid.RowSpan="3" Grid.Row="0" Grid.Column="1"></Label>
+                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding OrgName}" FontAttributes="Bold" />
+                                    <Label Grid.Row="1" Grid.Column="2" Text="{Binding VoucherDescription}" FontAttributes="Italic" VerticalOptions="End" />
+                                    <!--<Label Grid.Row="2" Grid.Column="2" Text="{Binding ValidUntilDate}" FontAttributes="Italic" VerticalOptions="End" />-->
+                                    <ImageButton Clicked="OnClicked_Share" CommandParameter="{Binding .}" WidthRequest="24" HeightRequest="24" Grid.Row="2" Grid.Column="3" Source="icon_share_24.png" HorizontalOptions="End" BackgroundColor="Transparent"></ImageButton>
+                                    <ImageButton Clicked="OnClicked_Download" CommandParameter="{Binding .}" WidthRequest="24" HeightRequest="24"  Grid.Row="2" Grid.Column="4" Source="icon_download_24.png" HorizontalOptions="End" BackgroundColor="Transparent"></ImageButton>
+                                    <BoxView HorizontalOptions="Fill" Grid.ColumnSpan="5" Grid.Row="3" Grid.Column="0" HeightRequest="2" BackgroundColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}"></BoxView>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <StackLayout>
+                                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+                                <Label HorizontalOptions="Center" Text="No vouchers to display"></Label>
+                            </StackLayout>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+    </ContentPage.Content>
+</baseViews:BaseContentPage>

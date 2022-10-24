@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.GenericViews.LoginPage"
+                NavigationPage.HasNavigationBar="False"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources">
+    <ContentPage.Content>
+        <FlexLayout Direction="Column">
+            <StackLayout Margin="{x:Static themeDesign:ThemeDesign.StackedLayoutPadding}" FlexLayout.Grow="1">
+                <BoxView Color="Transparent" HeightRequest="70"></BoxView>
+                <Image Source="logo_beanbag.png"  HorizontalOptions="FillAndExpand"></Image>
+                <BoxView Color="Transparent" HeightRequest="70"></BoxView>
+
+                <Entry x:Name="txtEmail" Text="abc@abc.com" Placeholder="Email" ClearButtonVisibility="WhileEditing" Keyboard="Email" ReturnType="Next" />
+                <BoxView Color="Transparent" HeightRequest="10"></BoxView>
+                <Entry x:Name="txtPassword" Text="abc123" IsPassword="true" Placeholder="Password" ClearButtonVisibility="WhileEditing" Completed="OnClicked_LoginButton" />
+                <BoxView Color="Transparent" HeightRequest="10"></BoxView>
+
+                <Button FontSize="{x:Static themeDesign:ThemeDesign.LabelFontSize}" Text="Log in" Clicked="OnClicked_LoginButton" TextColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryTextColor}" BackgroundColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryBackgroundColor}" />
+            </StackLayout>
+
+            <StackLayout Margin="{x:Static themeDesign:ThemeDesign.StackedLayoutPadding}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label TextColor="DimGray" FontSize="18" Text="Forgot Password?" HorizontalTextAlignment="Start" Grid.Row="0" Grid.Column="0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapped_ForgotPassword" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label TextColor="DimGray" FontSize="18" Text="Register" HorizontalTextAlignment="End" Grid.Row="0" Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapped_Register" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </StackLayout>
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<baseViews:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.AccountViews.AccountUpdatePage"
+             xmlns:baseViews="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             Title="Update Profile">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="{x:Static themeDesign:ThemeDesign.StackedLayoutPadding}">
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+
+                <Label FontSize="{x:Static themeDesign:ThemeDesign.LabelFontSize}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Name" />
+                            <Span Text="{x:Static themeDesign:ThemeDesign.AsteriskText}" TextColor="{x:Static themeDesign:ThemeDesign.AsteriskColour}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry x:Name="txtName" ReturnType="Next" Text="{Binding Account.Name}" />
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+
+                <Label FontSize="{x:Static themeDesign:ThemeDesign.LabelFontSize}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Mobile No." />
+                            <Span Text="{x:Static themeDesign:ThemeDesign.AsteriskText}" TextColor="{x:Static themeDesign:ThemeDesign.AsteriskColour}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry x:Name="txtMobileNo" Keyboard="Numeric" ReturnType="Next" Text="{Binding Account.Mobile}" />
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+
+                <Label FontSize="{x:Static themeDesign:ThemeDesign.LabelFontSize}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Gender" />
+                            <Span Text="{x:Static themeDesign:ThemeDesign.AsteriskText}" TextColor="{x:Static themeDesign:ThemeDesign.AsteriskColour}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Picker  x:Name="pickerGender" ItemsSource="{Binding Genders}" ItemDisplayBinding="{Binding Text}" SelectedItem="{Binding SelectedGender}"/>
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+
+                <Label FontSize="{x:Static themeDesign:ThemeDesign.LabelFontSize}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Date of Birth" />
+                            <Span Text="{x:Static themeDesign:ThemeDesign.AsteriskText}" TextColor="{x:Static themeDesign:ThemeDesign.AsteriskColour}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <DatePicker x:Name="datePickerDOB" Format="d MMMM yyyy" Date="{Binding Account.DateOfBirth}" >
+                </DatePicker>
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+
+                <Label FontSize="{x:Static themeDesign:ThemeDesign.LabelFontSize}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="ID No." />
+                            <Span Text="{x:Static themeDesign:ThemeDesign.AsteriskText}" TextColor="{x:Static themeDesign:ThemeDesign.AsteriskColour}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry x:Name="txtIDNo" ReturnType="Next" Text="{Binding Account.NRIC}" />
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+
+                <!--<Label FontSize="{x:Static themeDesign:ThemeDesign.LabelFontSize}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Country" />
+                            <Span Text="{x:Static themeDesign:ThemeDesign.AsteriskText}" TextColor="{x:Static themeDesign:ThemeDesign.AsteriskColour}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Picker  x:Name="pickerCountry" ItemsSource="{Binding Countries}" ItemDisplayBinding="{Binding Text}" SelectedItem="{Binding SelectedCountry}"/>
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>-->
+
+                <Label FontSize="{x:Static themeDesign:ThemeDesign.LabelFontSize}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="State" />
+                            <Span Text="{x:Static themeDesign:ThemeDesign.AsteriskText}" TextColor="{x:Static themeDesign:ThemeDesign.AsteriskColour}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Picker  x:Name="pickerState" ItemsSource="{Binding States}" ItemDisplayBinding="{Binding Text}" SelectedItem="{Binding SelectedState}"/>
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+
+                <Label FontSize="{x:Static themeDesign:ThemeDesign.LabelFontSize}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Address" />
+                            <Span Text="{x:Static themeDesign:ThemeDesign.AsteriskText}" TextColor="{x:Static themeDesign:ThemeDesign.AsteriskColour}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry x:Name="txtAddress1" ReturnType="Next" Text="{Binding Account.Address1}" />
+                <Entry x:Name="txtAddress2" ReturnType="Next" Text="{Binding Account.Address2}" />
+                <Entry x:Name="txtAddress3" ReturnType="Next" Text="{Binding Account.Address3}" />
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+
+                <Label FontSize="{x:Static themeDesign:ThemeDesign.LabelFontSize}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Postcode" />
+                            <Span Text="{x:Static themeDesign:ThemeDesign.AsteriskText}" TextColor="{x:Static themeDesign:ThemeDesign.AsteriskColour}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry x:Name="txtPostcode" ReturnType="Next" Text="{Binding Account.Postcode}" />
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+
+                <Label FontSize="{x:Static themeDesign:ThemeDesign.LabelFontSize}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="City" />
+                            <Span Text="{x:Static themeDesign:ThemeDesign.AsteriskText}" TextColor="{x:Static themeDesign:ThemeDesign.AsteriskColour}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry x:Name="txtCity" ReturnType="Next" Text="{Binding Account.TownCity}" />
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+
+                <BoxView HeightRequest="50"></BoxView>
+                <Button FontSize="{x:Static themeDesign:ThemeDesign.LabelFontSize}" Text="Update" Clicked="OnClicked_Update" TextColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryTextColor}" BackgroundColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryBackgroundColor}" />
+                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</baseViews:BaseContentPage>

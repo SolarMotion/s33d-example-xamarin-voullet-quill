@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<baseViews:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.TransactionHistoryViews.TransactionHistoryListingPage"
+             xmlns:baseViews="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             Title="Transaction History">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Close" Order="Primary" Priority="0" Clicked="OnClicked_Close"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid BackgroundColor="{x:Static themeDesign:ThemeDesign.BackgroundColor}" Padding="5, 0, 5, 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.ColumnSpan="3" Grid.Row="0" Text="(Last 90 Days Only)" HorizontalOptions="Center" />
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Date"></Label>
+                <Label Grid.RowSpan="2" Grid.Row="1" Grid.Column="1" Text="Time"></Label>
+                <Label Grid.RowSpan="2" Grid.Row="1" Grid.Column="2" Text="Item"></Label>
+
+                <Label Grid.Row="2" Grid.Column="0" Text="(Status)"></Label>
+
+                <Label Grid.ColumnSpan="3" Grid.Row="3" Grid.Column="0" HeightRequest="1"  BackgroundColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}"></Label>
+            </Grid>
+
+            <RefreshView x:Name="refreshViewTransaction" Refreshing="OnRefreshing_VoucherCollectionView"  RefreshColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}">
+                <ScrollView>
+                    <CollectionView x:Name="collectionViewTransaction" ItemsSource="{Binding Transactions}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="5, 10, 5, 10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding RedeemOn}" />
+                                    <Label Grid.RowSpan="2" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" Text="{Binding RedeemTime}" />
+                                    <Label Grid.RowSpan="2" Grid.Row="0" Grid.Column="2" VerticalTextAlignment="Start" Text="{Binding Name}" />
+
+                                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding Status, StringFormat='({0})'}" />
+                                    
+                                    <Label Grid.ColumnSpan="3" Grid.Row="3" Grid.Column="0"  HeightRequest="1" BackgroundColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}"></Label>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <StackLayout>
+                                <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+                                <Label HorizontalOptions="Center" Text="No transaction to display"></Label>
+                            </StackLayout>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </ScrollView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</baseViews:BaseContentPage>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:XamarinConsumerApp.Views.FundraisingViews;assembly=XamarinConsumerApp"
+             xmlns:m="clr-namespace:XamarinConsumerApp.Models;assembly=XamarinConsumerApp"
+             x:Class="XamarinConsumerApp.Views.FundraisingViews.FundraisingIndexPage"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             xmlns:base="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             Title="Fundraising">
+    <d:ContentPage.BindingContext>
+        <local:FundraisingViewModel />
+    </d:ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Margin="{x:Static themeDesign:ThemeDesign.StackedLayoutPadding}">
+            <Frame Padding="0" Margin="5" BackgroundColor="White" HasShadow="False" BorderColor="Gray" CornerRadius="15" HeightRequest="40">
+                <SearchBar x:Name="searchBarFundraisingListing" Placeholder="Seach..." FontAttributes="Italic" HorizontalTextAlignment="Center" SearchButtonPressed="OnClick_SearchBar" />
+            </Frame>
+            <RefreshView x:Name="refreshCollectionView" IsRefreshing="False" Refreshing="OnRefreshing_CollectionView" RefreshColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}">
+                <CollectionView x:Name="collectionViewListing" ItemsSource="{Binding Items}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="0, 10, 0, 10">
+                                <d:Grid.BindingContext>
+                                    <m:FundraisingModel />
+                                </d:Grid.BindingContext>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTapped_List" CommandParameter="{Binding .}"/>
+                                </Grid.GestureRecognizers>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.RowSpan="3" Grid.Row="0" Grid.Column="0" Source="{Binding ImageSource}" Aspect="AspectFill" HeightRequest="100" WidthRequest="80" />
+                                <Label Grid.RowSpan="3" Grid.Row="0" Grid.Column="1"></Label>
+                                <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding Name}" FontAttributes="Bold" />
+                                <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding Description}" FontAttributes="Italic" VerticalOptions="End" />
+                                <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding ValidTill}" FontAttributes="Italic" VerticalOptions="End" />
+                                <ImageButton Clicked="OnClicked_Share" CommandParameter="{Binding .}" WidthRequest="24" HeightRequest="24" Grid.Row="2" Grid.Column="4" Source="icon_share_24.png" HorizontalOptions="Center" BackgroundColor="Transparent"></ImageButton>
+                                <BoxView HorizontalOptions="Fill" Grid.ColumnSpan="5" Grid.Row="3" Grid.Column="0" HeightRequest="2" BackgroundColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}"></BoxView>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <StackLayout>
+                            <BoxView HeightRequest="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}"></BoxView>
+                            <Label HorizontalOptions="Center" Text="No fundraising to display"></Label>
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</base:BaseContentPage>

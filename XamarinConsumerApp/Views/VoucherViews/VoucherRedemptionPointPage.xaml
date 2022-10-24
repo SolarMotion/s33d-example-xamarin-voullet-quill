@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<baseViews:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.VoucherViews.VoucherRedemptionPointPage"
+             xmlns:baseViews="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             Title="Redemption Points">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Close" Order="Primary" Priority="0" Clicked="OnClicked_Close"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView Margin="{x:Static themeDesign:ThemeDesign.FormSpacingHeightRequest}">
+            <CollectionView x:Name="collectionViewRedemptionPoints" ItemsSource="{Binding Voucher.RedemptionPoints}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0, 10, 0, 10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding information}" />
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding FullAddress}" />
+                            <Label Grid.Row="2" Grid.Column="0" Text="{Binding contactNo}" />
+                            <Label Grid.Row="3" Grid.Column="0"  HeightRequest="1"  BackgroundColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}"></Label>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </ContentPage.Content>
+</baseViews:BaseContentPage>

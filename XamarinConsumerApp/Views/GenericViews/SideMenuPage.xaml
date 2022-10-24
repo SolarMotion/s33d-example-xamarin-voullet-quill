@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.GenericViews.SideMenuPage"
+             Title="Menu"
+             IconImageSource="sidemenu_hamburger.png"
+             xmlns:transactionHistoryViews="clr-namespace:XamarinConsumerApp.Views.TransactionHistoryViews"
+             xmlns:genericViews="clr-namespace:XamarinConsumerApp.Views.GenericViews"
+             xmlns:fundraisingViews="clr-namespace:XamarinConsumerApp.Views.FundraisingViews"
+             xmlns:accountViews="clr-namespace:XamarinConsumerApp.Views.AccountViews"
+             xmlns:models="clr-namespace:XamarinConsumerApp.Models"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources">
+    <StackLayout BackgroundColor="{Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}">
+        <ListView x:Name="listView" x:FieldModifier="public">
+            <ListView.Header>
+                <Label TextColor="{Static themeDesign:ThemeDesign.ButtonPrimaryTextColor}" Margin="10,10" FontSize="22">Menu</Label>
+            </ListView.Header>
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type models:SideMenuModel}">
+                    <!--<models:SideMenuModel Title="Home" IconSource="sidemenu_circle_outline_32.png" TargetType="{x:Type genericViews:TabbedNavigationPage}" />-->
+                    <models:SideMenuModel Title="History" IconSource="sidemenu_circle_outline_32.png" TargetType="{x:Type transactionHistoryViews:TransactionHistoryListingPage}" />
+                    <models:SideMenuModel Title="Account" IconSource="sidemenu_circle_outline_32.png" TargetType="{x:Type accountViews:AccountIndexPage}" />
+                    <models:SideMenuModel Title="We Support" IconSource="sidemenu_circle_outline_32.png" TargetType="{x:Type genericViews:SupportedMerchantPage}" />
+                    <models:SideMenuModel Title="About" IconSource="sidemenu_circle_outline_32.png" TargetType="{x:Type genericViews:AboutPage}" />
+                    <models:SideMenuModel Title="Logout" IconSource="sidemenu_circle_outline_32.png" TargetType="{x:Type genericViews:LogoutPage}" />
+                </x:Array>
+            </ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="10,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Aspect="AspectFit" Source="{Binding IconSource}" />
+                            <Label VerticalTextAlignment="Center" FontSize="22" TextColor="{Static themeDesign:ThemeDesign.ButtonPrimaryTextColor}" Grid.Column="1" Text="{Binding Title}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

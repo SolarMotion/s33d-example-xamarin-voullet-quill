@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.GenericViews.TabbedNavigationPage"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             xmlns:androidSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             androidSpecific:TabbedPage.ToolbarPlacement="Bottom"
+             androidSpecific:TabbedPage.IsSwipePagingEnabled="False"
+             androidSpecific:TabbedPage.IsSmoothScrollEnabled="False"             
+             BarBackgroundColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarBackgroundColor}"
+             BarTextColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarTextColor}"
+             SelectedTabColor="{x:Static themeDesign:ThemeDesign.TopNavigationBarTextColor}"
+             xmlns:genericViews="clr-namespace:XamarinConsumerApp.Views.GenericViews"
+             xmlns:downloadViews="clr-namespace:XamarinConsumerApp.Views.DownloadViews"
+             xmlns:couponViews="clr-namespace:XamarinConsumerApp.Views.CouponViews"
+             xmlns:fundraisingViews="clr-namespace:XamarinConsumerApp.Views.FundraisingViews">
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text=""
+                 IconImageSource="sidemenu_document_outline_32.png"
+                 Order="Primary"
+                 Priority="0"
+                 Clicked="OnClicked_HighlightIcon"/>
+    </TabbedPage.ToolbarItems>
+
+    <TabbedPage.Children >
+        <genericViews:HomePage IconImageSource="home.png" Title="Home" />
+        <!--<NavigationPage Title="Home" Icon="sidemenu_hamburger.png">
+            <x:Arguments>
+                <genericViews:HomePage />
+            </x:Arguments>
+        </NavigationPage>-->
+        <downloadViews:DownloadIndexPage IconImageSource="download.png" Title="Downloads" />
+        <couponViews:CouponIndexPage IconImageSource="tag_multiple.png" Title="Coupons" />
+        <fundraisingViews:FundraisingIndexPage IconImageSource="charity.png" Title="Fundraising" />
+    </TabbedPage.Children>
+</TabbedPage>

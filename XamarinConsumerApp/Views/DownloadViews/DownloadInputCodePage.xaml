@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<baseViews:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinConsumerApp.Views.DownloadViews.DownloadInputCodePage"
+             xmlns:baseViews="clr-namespace:XamarinConsumerApp.Views.BaseViews"
+             xmlns:themeDesign="clr-namespace:XamarinConsumerApp.Resources"
+             Title="Input Code">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Insert code to download coupon" Margin="0, 60, 0, 0" HorizontalOptions="CenterAndExpand" />
+
+            <Entry x:Name="txtCode" HorizontalTextAlignment="Center" HorizontalOptions="Center" WidthRequest="200"></Entry>
+
+            <Button Text="Enter" Margin="0, 20, 0, 0" Padding="20"  BackgroundColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryBackgroundColor}" TextColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryTextColor}" Clicked="OnClick_InputCode" HorizontalOptions="Center"></Button>
+
+            <Label Text="OR" Margin="0, 30, 0, 0" FontAttributes="Bold" HorizontalOptions="Center"></Label>
+
+            <Label Text="Insert campaign code to download coupon(s)" Margin="0, 40, 0, 0" HorizontalOptions="CenterAndExpand" />
+
+            <Entry x:Name="txtCampaign" HorizontalTextAlignment="Center" HorizontalOptions="Center" WidthRequest="200"></Entry>
+
+            <Button Text="Enter" Margin="0, 20, 0, 0" Padding="20"  BackgroundColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryBackgroundColor}" TextColor="{x:Static themeDesign:ThemeDesign.ButtonPrimaryTextColor}" Clicked="OnClick_InputCampaign" HorizontalOptions="Center"></Button>
+
+        </StackLayout>
+    </ContentPage.Content>
+</baseViews:BaseContentPage>
